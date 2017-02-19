@@ -49,4 +49,4 @@ Moving right along to solve for y[n]:
 
 <p align="center">  <img src="/images/render 10.gif"/>   </p>
 
-This equation now defines how we can calculate the current output, *y[n]*, based on previous outputs, *y[n-k]*, the current error, *e[n]*, and previous errors, *e[n-k]*. 
+This equation now defines how we can calculate the current output, *__y[n]__*, based on previous outputs, *__y[n-k]__*, the current error, *__e[n]__*, and previous errors, *__e[n-k]__*. 
