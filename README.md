@@ -22,59 +22,31 @@ Where N is the filter coefficient.
 
 Now things get a bit interesting with some bilinear transformation. We begin by making the following substitution:  
 
-s \leftarrow K\frac{1-z^{-1}}{1+z^{-1}}
-\textup{Where}\,\, K\equiv \frac{2}{T_s}
+<p align="center">  <img src="/images/render 3.gif"/>   </p>
+<p align="center">  <img src="/images/render 4.gif"/>   </p>
 
 This is where things get ugly… Making the substitution and rearranging things we now have this:
 
-\frac{Y(z)}{E(z)}=\frac{\left(K^2\, K_{p} + K\, K_{i} + K_{i}\, N + K\, K_{p}\, N + K^2\, K_{d}\, N\right)\, z^2 + \left(2\, K_{i}\, N - 2\, K^2\, K_{p} - 2\, K^2\, K_{d}\, N\right)\, z + (K^2\, K_{p} - K\, K_{i} + K_{i}\, N - K\, K_{p}\, N + K^2\, K_{d}\, N)}{\left(K^2 + N\, K\right)\, z^2 + \left(- 2\, K^2\right)\, z + (K^2 - K\, N)}
+<p align="center">  <img src="/images/render 5.gif"/>   </p>
 
 Before proceeding this hot mess has to be made causal by having the numerator and denominator divided by the highest order of z. Leaving us with the slightly modified:
 
-\frac{Y(z)}{E(z)}=\frac{\left(K^2\, K_{p} + K\, K_{i} + K_{i}\, N + K\, K_{p}\, N + K^2\, K_{d}\, N\right)\, + \left(2\, K_{i}\, N - 2\, K^2\, K_{p} - 2\, K^2\, K_{d}\, N\right)\, z^{-1} + (K^2\, K_{p} - K\, K_{i} + K_{i}\, N - K\, K_{p}\, N + K^2\, K_{d}\, N)\,z^{-2}}{\left(K^2 + N\, K\right)\, + \left(- 2\, K^2\right)\,z^{-1} + (K^2 - K\, N)\,z^{-2}}
+<p align="center">  <img src="/images/render 6.gif"/>   </p>
 
 For sanity's sake we make some substitutions:
 
-\frac{Y(z)}{E(z)}=\frac{b_0\, + b_1\, z^{-1} + b_2\,z^{-2}}{a_0\, + a_1\,z^{-1} + a_2\,z^{-2}}
-
-\textup{Where: }
-
-b_0=\left(K^2\, K_{p} + K\, K_{i} + K_{i}\, N + K\, K_{p}\, N + K^2\, K_{d}\, N\right)
-
-b_1=\left(2\, K_{i}\, N - 2\, K^2\, K_{p} - 2\, K^2\, K_{d}\, N\right)
-
-b_2=(K^2\, K_{p} - K\, K_{i} + K_{i}\, N - K\, K_{p}\, N + K^2\, K_{d}\, N)
-
-a_0=\left(K^2 + N\, K\right)
-
-a_1=\left(- 2\, K^2\right)
-
-a_2=(K^2 - K\, N)
+<p align="center">  <img src="/images/render 7.gif"/>   </p>
 
 Now we rearrange some terms:
 
-( a_0+ a_1\, z^{-1} + a_2\, z^{-2})Y(z)=(b_0 + b_1\,  z^{-1} + b_2\,  z^{-2})E(z)
+<p align="center">  <img src="/images/render 8.gif"/>   </p>
 
 Then we take the inverse z-transform:
 
-a_0\,y[n]+ a_1\,y[n-1] + a_2\,y[n-2]=b_0\,e[n] + b_1\,e[n-1] + b_2\,e[n-2]
+<p align="center">  <img src="/images/render 9.gif"/>   </p>
 
 Moving right along to solve for y[n]:
 
-y[n]= -\frac{a_1}{a_0}\,y[n-1] -\frac{a_2}{a_0}y[n-2] + \frac{b_0}{a_0}\,e[n] + \frac{b_1}{a_0}\,e[n-1] + \frac{b_2}{a_0}\,e[n-2]\\ \\
-Where:\\
+<p align="center">  <img src="/images/render 10.gif"/>   </p>
 
-b_0=\left(K^2\, K_{p} + K\, K_{i} + K_{i}\, N + K\, K_{p}\, N + K^2\, K_{d}\, N\right)
-
-b_1=\left(2\, K_{i}\, N - 2\, K^2\, K_{p} - 2\, K^2\, K_{d}\, N\right)
-
-b_2=(K^2\, K_{p} - K\, K_{i} + K_{i}\, N - K\, K_{p}\, N + K^2\, K_{d}\, N)
-
-a_0=\left(K^2 + N\, K\right)
-
-a_1=\left(- 2\, K^2\right)
-
-a_2=(K^2 - K\, N)
-
-K\,\equiv \frac{2}{T_s}
-
+This equation now defines how we can calculate the current output, *y[n]*, based on previous outputs, *y[n-k]*, the current error, *e[n]*, and previous errors, *e[n-k]*. 
