@@ -8,7 +8,9 @@ This readme assumes the reader has some understanding of a PID controller. Here 
 
 We begin with the parallel form of a PID controller:
 
-u(t)=K_pe(t) + K_i\int_{0}^{t}e(\tau)d\tau + K_d \frac{\mathrm{d} e(t)}{\mathrm{d} x}
+<p align="center">
+  <img src="/images/render 1.gif" width="900"/>
+</p>
 
 Hit this up with some Laplace transform magic:
 
