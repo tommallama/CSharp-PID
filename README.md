@@ -8,17 +8,15 @@ This readme assumes the reader has some understanding of a PID controller. Here 
 
 We begin with the parallel form of a PID controller:
 
-<p align="center">
-  <img src="/images/render 1.gif" width="900"/>
-</p>
+<p align="center">  <img src="/images/render.gif"/>   </p>
 
 Hit this up with some Laplace transform magic:
 
-G_c(s) = K_p + \frac{Ki}{s} +sK_d
+<p align="center">  <img src="/images/render 1.gif"/>   </p>
 
-While this form is great in the ideal realm, taking the derivative of an error will prove a hot mess and therefor it is much more common to convert the hit the derivative portion with a low pass filter thusly:
+While this form is great in the ideal realm, taking the derivative of an error will prove a hot mess and therefor it is much more common to modify the derivative portion with a low pass filter thusly:
 
-G_c(s) = K_p + \frac{Ki}{s} + \frac{NK_d}{1+\frac{N}{s}}
+<p align="center">  <img src="/images/render 2.gif"/>   </p>
 
 Where N is the filter coefficient.
 
