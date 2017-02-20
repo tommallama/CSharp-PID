@@ -8,7 +8,7 @@ This readme assumes the reader has some understanding of a PID controller. Here 
 
 We begin with the parallel form of a PID controller:
 
-
+<p align="center">  <img src="/images/render.gif"/>   </p>
 
 Hit this up with some Laplace transform magic:
 
