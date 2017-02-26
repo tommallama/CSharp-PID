@@ -1,5 +1,11 @@
 # CSharp-PID
-A fixed time Proportional Integral Derivative (PID) controller, written in C#.
+A Proportional Integral Derivative (PID) controller, written in C#.
+
+## Constructor
+```cs
+public PID(double Kp, double Ki, double Kd, double N, double OutputUpperLimit, double OutputLowerLimit)
+```
+
 
 ## Controller Derivation
 
