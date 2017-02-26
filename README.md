@@ -1,5 +1,27 @@
 # CSharp-PID
-A fixed time Proportional Integral Derivative (PID) controller, written in C#.
+A Proportional Integral Derivative (PID) controller, written in C#.
+
+## Constructor
+```cs
+public PID(double Kp, double Ki, double Kd, double N, double OutputUpperLimit, double OutputLowerLimit)
+```
+* ```Kp``` Proportional Gain
+* ```Ki``` Integral Gain
+* ```Kd``` Derivative Gain
+* ```N``` Derivative FIlter Coefficient
+* ```OutputUpperLimit``` Controller Upper Output Limit
+* ```OutputLowerLimit``` Controller Lower Output Limit
+
+## Properties
+| Property            | Type        | Access  | Description                                                     |
+|:-------------------:|:-----------:|:-------:|-----------------------------------------------------------------|
+| Kd    | ```double``` | get/set | The proportional gain in the feedback loop                      |
+| Ki        | ```double``` | get/set | The integral gain in the feedback loop                          |
+| Kd      | ```double``` | get/set | The derivative gain in the feedback loop                        |
+| N           | ```double``` | get/set | The maximum value the ```ControlVariable``` property can return |
+| TsMin           | ```double``` | get/set | The minimum value the ```ControlVariable``` property can return |
+| OutputUpperLimit        | ```double``` | get/set | Tracks the accumulated error in the control loop                |
+| OutputLowerLimit     | ```double``` | get/set | Current value of the process under control                      |
 
 ## Controller Derivation
 
