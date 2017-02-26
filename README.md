@@ -13,15 +13,15 @@ public PID(double Kp, double Ki, double Kd, double N, double OutputUpperLimit, d
 * ```OutputLowerLimit``` Controller Lower Output Limit
 
 ## Properties
-| Property            | Type        | Access  | Description                                                     |
-|:-------------------:|:-----------:|:-------:|-----------------------------------------------------------------|
-| Kd    | ```double``` | get/set | The proportional gain in the feedback loop                      |
-| Ki        | ```double``` | get/set | The integral gain in the feedback loop                          |
-| Kd      | ```double``` | get/set | The derivative gain in the feedback loop                        |
-| N           | ```double``` | get/set | The maximum value the ```ControlVariable``` property can return |
-| TsMin           | ```double``` | get/set | The minimum value the ```ControlVariable``` property can return |
-| OutputUpperLimit        | ```double``` | get/set | Tracks the accumulated error in the control loop                |
-| OutputLowerLimit     | ```double``` | get/set | Current value of the process under control                      |
+| Property            | Type        | Access  | Description                                 |
+|:-------------------:|:-----------:|:-------:|---------------------------------------------|
+| Kd                  | ```double``` | get/set | The proportional gain                     	|
+| Ki                  | ```double``` | get/set | The integral gain                      	|
+| Kd                  | ```double``` | get/set | The derivative gain                       	|
+| N                   | ```double``` | get/set | The derivative filter coefficient 			|
+| TsMin               | ```double``` | get/set | The minimum sample time allowed 			|
+| OutputUpperLimit    | ```double``` | get/set | The maximum value the controller return    |
+| OutputLowerLimit    | ```double``` | get/set | The minimum value the controller return	|
 
 ## Controller Derivation
 
