@@ -12,19 +12,38 @@ public PID(double Kp, double Ki, double Kd, double N, double OutputUpperLimit, d
 * ```OutputUpperLimit``` Controller Upper Output Limit
 * ```OutputLowerLimit``` Controller Lower Output Limit
 
+## Methods
+```cs
+public double PID_iterate(double setPoint, double processValue, TimeSpan ts)
+```
+ The **PID_iterate** method is called once a sample period to run the controller.
+* **setPoint** is the desired (target) setpoint for the system to reach. 
+* **processValue** is the current process value which is being controlled.
+* **ts** is the TimeSpan since the last time **PID_iterate** was called.
+* The returned value is the controller output (input to what is being controlled).
+
+```cs
+public void ResetController()
+```
+**ResetController** resets the controller history effectively resetting the controller.
+* This should be called when the system is idle if gains have been drastically modified.
+
 ## Properties
 | Property            | Type        | Access  | Description                                 |
 |:-------------------:|:-----------:|:-------:|---------------------------------------------|
 | Kd                  | ```double``` | get/set | The proportional gain                     	|
-| Ki                  | ```double``` | get/set | The integral gain                      	|
+| Ki                  | ```double``` | get/set | The integral gain                        	|
 | Kd                  | ```double``` | get/set | The derivative gain                       	|
-| N                   | ```double``` | get/set | The derivative filter coefficient 			|
-| TsMin               | ```double``` | get/set | The minimum sample time allowed 			|
+| N                   | ```double``` | get/set | The derivative filter coefficient 		    	|
+| TsMin               | ```double``` | get/set | The minimum sample time allowed 		      	|
 | OutputUpperLimit    | ```double``` | get/set | The maximum value the controller return    |
-| OutputLowerLimit    | ```double``` | get/set | The minimum value the controller return	|
+| OutputLowerLimit    | ```double``` | get/set | The minimum value the controller return	  |
+
+### Notes on Properties
+* The **N** property is the filter coefficient on the derivative terms low pass filter. A higher value of **N** equates to less filtering and a lower value of **N** equates to more filtering. See the **Controller Derivation** section below for technical details.
+* The **TsMin** property is by default **1 millisecond**. **TsMin** should be left alone so long the intended sample period is greater than 1 millisecond. This property mostly exists to keep the controller from being passed a zero timespan and causing a division by zero.
 
 ## Controller Derivation
-
 This class implements a Proportional-Integral-Derivative (PID) controller with a fixed sample period.
 This readme assumes the reader has some understanding of a PID controller. Here I offer a bit of the logic used to derive the algorithms utilized.
 
