@@ -72,6 +72,16 @@ namespace PID_Controller
             y1 = y0;                        // Age outputs one iteration
             y0 = -a1 / a0 * y1 - a2 / a0 * y2 + b0 / a0 * e0 + b1 / a0 * e1 + b2 / a0 * e2; // Calculate current output
 
+            // Clamp output if needed
+            if (y0 > OutputUpperLimit)
+            {
+                y0 = OutputUpperLimit;
+            }
+            else if (y0 < OutputLowerLimit)
+            {
+                y0 = OutputLowerLimit;
+            }
+
             return y0;
         }
 
