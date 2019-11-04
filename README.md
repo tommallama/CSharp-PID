@@ -55,7 +55,7 @@ Hit this up with some Laplace transform magic:
 
 <p align="center">  <img src="/images/render 1.gif"/>   </p>
 
-While this form is great in the ideal realm, taking the derivative of an error will prove a hot mess and therefor it is much more common to modify the derivative portion with a low pass filter thusly:
+While this form is great in the ideal realm, taking the derivative of an error will prove a hot mess and therefore it is much more common to modify the derivative portion with a low pass filter thusly:
 
 <p align="center">  <img src="/images/render 2.gif"/>   </p>
 
