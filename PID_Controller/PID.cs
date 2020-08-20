@@ -4,12 +4,7 @@ namespace PID_Controller
 {
     public class PID
     {
-        private double kp, ki, kd;          // Controller gains
-        private double n;                   // Filter coefficient
         private double Ts;                  // Sample period in seconds
-        private double tsMin;               // Minimum sample period in seconds
-        private double outputUpperLimit;    // Lower output limit of the controller
-        private double outputLowerLimit;    // Upper output limit of the controller
         private double K;                   // Rollup parameter
         private double b0, b1, b2;          // Rollup parameters
         private double a0, a1, a2;          // Rollup parameters
@@ -26,7 +21,7 @@ namespace PID_Controller
         /// <param name="Kp">Proportional Gain</param>
         /// <param name="Ki">Integral Gain</param>
         /// <param name="Kd">Derivative Gain</param>
-        /// <param name="N">Derivative FIlter Coefficient</param>
+        /// <param name="N">Derivative Filter Coefficient</param>
         /// <param name="OutputUpperLimit">Controller Upper Output Limit</param>
         /// <param name="OutputLowerLimit">Controller Lower Output Limit</param>
         public PID(double Kp, double Ki, double Kd, double N, double OutputUpperLimit, double OutputLowerLimit)
@@ -37,8 +32,6 @@ namespace PID_Controller
             this.N = N;
             this.OutputUpperLimit = OutputUpperLimit;
             this.OutputLowerLimit = OutputLowerLimit;
-
-            TsMin = 0.001;  // TsMin by default is set to 1 millisecond. 
         }
 
         /// <summary>
@@ -48,7 +41,7 @@ namespace PID_Controller
         /// <param name="setPoint">Current Desired Setpoint</param>
         /// <param name="processValue">Current Process Value</param>
         /// <param name="ts">Timespan Since Last Iteration, Use Default Sample Period for First Call</param>
-        /// <returns>Current Controller Outpu</returns>
+        /// <returns>Current Controller Output</returns>
         public double PID_iterate(double setPoint, double processValue, TimeSpan ts)
         {
             // Ensure the timespan is not too small or zero.
@@ -67,7 +60,6 @@ namespace PID_Controller
             e2 = e1;                        // Age errors one iteration
             e1 = e0;                        // Age errors one iteration
             e0 = setPoint - processValue;   // Compute new error
-
             y2 = y1;                        // Age outputs one iteration
             y1 = y0;                        // Age outputs one iteration
             y0 = -a1 / a0 * y1 - a2 / a0 * y2 + b0 / a0 * e0 + b1 / a0 * e1 + b2 / a0 * e2; // Calculate current output
@@ -101,70 +93,43 @@ namespace PID_Controller
         /// <summary>
         /// Proportional Gain, consider resetting controller if this parameter is drastically changed.
         /// </summary>
-        public double Kp
-        {
-            get { return kp; }
-            set { kp = value; }
-        }
+        public double Kp { get; set; }
 
         /// <summary>
         /// Integral Gain, consider resetting controller if this parameter is drastically changed.
         /// </summary>
-        public double Ki
-        {
-            get { return ki; }
-            set { ki = value; }
-        }
+        public double Ki { get; set; }
 
         /// <summary>
         /// Derivative Gain, consider resetting controller if this parameter is drastically changed.
         /// </summary>
-        public double Kd
-        {
-            get { return kd; }
-            set { kd = value; }
-        }
+        public double Kd { get; set; }
 
         /// <summary>
-        /// Derivative filter coefficient. 
+        /// Derivative filter coefficient.
         /// A smaller N for more filtering.
-        /// A larger N for less filtering. 
+        /// A larger N for less filtering.
         /// Consider resetting controller if this parameter is drastically changed.
         /// </summary>
-        public double N
-        {
-            get { return n; }
-            set { n = value; }
-        }
+        public double N { get; set; }
 
         /// <summary>
         /// Minimum allowed sample period to avoid dividing by zero!
         /// The Ts value can be mistakenly set to too low of a value or zero on the first iteration.
+        /// TsMin by default is set to 1 millisecond.
         /// </summary>
-        public double TsMin
-        {
-            get { return tsMin; }
-            set { tsMin = value; }
-        }
+        public double TsMin { get; set; } = 0.001;
 
         /// <summary>
         /// Upper output limit of the controller.
         /// This should obviously be a numerically greater value than the lower output limit.
         /// </summary>
-        public double OutputUpperLimit
-        {
-            get { return outputUpperLimit; }
-            set { outputUpperLimit = value; }
-        }
+        public double OutputUpperLimit { get; set; }
 
         /// <summary>
         /// Lower output limit of the controller
         /// This should obviously be a numerically lesser value than the upper output limit.
         /// </summary>
-        public double OutputLowerLimit
-        {
-            get { return outputLowerLimit; }
-            set { outputLowerLimit = value; }
-        }
+        public double OutputLowerLimit { get; set; }
     }
 }

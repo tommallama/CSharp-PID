@@ -5,3 +5,6 @@
 /PID_Controller/.vs/PID_Controller/v14
 /PID_Controller/obj/Debug
 /PID_Controller/bin/Debug
+/.vs
+/PID_Controller/obj/Release
+/PID_Controller/.vs/PID_Controller/v16
