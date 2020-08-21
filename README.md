@@ -4,7 +4,7 @@ Use this project as a guide for implementing a PID controller.
 
 ## Limitation 
 Implementing anti-windup in the final discrete form would prove quite the effort.
-Consider another form if you need an aggressive integrator and/or windup will be an issue.
+Consider another form if you need an aggressive integrator and/or if windup will be an issue.
 
 ## Constructor
 ```cs
