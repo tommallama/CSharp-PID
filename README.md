@@ -54,45 +54,44 @@ This readme assumes the reader has some understanding of a PID controller. Here 
 
 We begin with the parallel form of a PID controller:
 
-<p align="center">  <img src="/assets/render.gif"/>   </p>
+<p align="center">  <img src="/assets/render.svg" height="45"/>   </p>
 
 Hit this up with some Laplace transform magic:
 
-<p align="center">  <img src="/assets/render 1.gif"/>   </p>
+<p align="center">  <img src="/assets/render 1.svg" height="45"/>   </p>
 
 While this form is great in the ideal realm, taking the derivative of an error will prove a hot mess and therefore it is much more common to modify the derivative portion with a low pass filter thusly:
 
-<p align="center">  <img src="/assets/render 2.gif"/>   </p>
+<p align="center">  <img src="/assets/render 2.svg" height="60"/>   </p>
 
 Where N is the filter coefficient.
 
 Now things get a bit interesting with some bilinear transformation. We begin by making the following substitution:  
 
-<p align="center">  <img src="/assets/render 3.gif"/>   </p>
-<p align="center">  <img src="/assets/render 4.gif"/>   </p>
+<p align="center">  <img src="/assets/render 3.svg" height="60"/>   </p>
+<p align="center">  <img src="/assets/render 4.svg" height="45"/>   </p>
 
 This is where things get ugly… Making the substitution and rearranging things we now have this:
 
-<p align="center">  <img src="/assets/render 5.gif"/>   </p>
-
+<p align="center">  <img src="/assets/render 5.svg" height="45"/>   </p>
 Before proceeding, this hot mess has to be made causal by having the numerator and denominator divided by the highest order of z. Leaving us with the slightly modified:
 
-<p align="center">  <img src="/assets/render 6.gif"/>   </p>
+<p align="center">  <img src="/assets/render 6.svg" height="45"/>   </p>
 
 For sanity's sake we make some substitutions:
 
-<p align="center">  <img src="/assets/render 7.gif"/>   </p>
+<p align="center">  <img src="/assets/render 7.svg" height="275"/>   </p>
 
 Now we rearrange some terms:
 
-<p align="center">  <img src="/assets/render 8.gif"/>   </p>
+<p align="center">  <img src="/assets/render 8.svg" height="30"/>   </p>
 
 Then we take the inverse z-transform:
 
-<p align="center">  <img src="/assets/render 9.gif"/>   </p>
+<p align="center">  <img src="/assets/render 9.svg" height="30"/>   </p>
 
 Moving right along to solve for y[n]:
 
-<p align="center">  <img src="/assets/render 10.gif"/>   </p>
+<p align="center">  <img src="/assets/render 10.svg" height="275"/>   </p>
 
 This equation now defines how we can calculate the current output, *__y[n]__*, based on previous outputs, *__y[n-k]__*, the current error, *__e[n]__*, and previous errors, *__e[n-k]__*. 
