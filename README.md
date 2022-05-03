@@ -36,7 +36,7 @@ public void ResetController()
 ## Properties
 | Property            | Type        | Access  | Description                                 |
 |:-------------------:|:-----------:|:-------:|---------------------------------------------|
-| Kd                  | ```double``` | get/set | The proportional gain                     	|
+| Kp                  | ```double``` | get/set | The proportional gain                     	|
 | Ki                  | ```double``` | get/set | The integral gain                        	|
 | Kd                  | ```double``` | get/set | The derivative gain                       	|
 | N                   | ```double``` | get/set | The derivative filter coefficient 		    	|
